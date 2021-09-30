@@ -1,0 +1,9 @@
+.hiddenDiv {
+  display: none;
+}
+
+.hiddenDiv.active {
+  display: flex;
+  justify-content: space-between;
+}
+

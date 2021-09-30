@@ -18,7 +18,9 @@ export const UserActivityTable = ({usersActivities}) => {
           id: x.id, 
           dateRegistration: x.dateRegistration,
           dateLastActivity: x.dateLastActivity
-        }}/>)
+        }}
+          key={x.id}
+        />)
       })
 
       }
