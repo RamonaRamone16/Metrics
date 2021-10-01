@@ -5,9 +5,7 @@ import { UserActivityItem } from './UserActivityItem';
 export const UserActivityTable = ({usersActivities}) => {
 
   return (
-    <div style={{
-      margin: '25px auto'
-    }}> 
+    <div> 
       <UserActivityItem userActivity={{
         id: 'UserId', 
         dateRegistration: 'DateRegistration',

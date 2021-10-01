@@ -12,7 +12,9 @@ export const UserActivityForm = ({create}) => {
   }
 
   return (
-      <form>
+      <form
+        onClick={(e) => e.stopPropagation()}
+      >
         <MyInput
         value={userActivity.id}
         onChange={e => setUserActivity({...userActivity, id: e.target.value})}

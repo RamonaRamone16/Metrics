@@ -3,28 +3,54 @@ import { UserActivityTable } from "./components/UserActivityTable";
 import { MyButton } from './components/UI/button/MyButton';
 import { UserActivityForm } from './components/UserActivityForm';
 import { useState } from 'react';
-import { HiddenDiv } from './components/UI/hiddenDiv/HiddenDiv';
 
 const App = () => {
   const [usersActivities, setUsersActivities] = useState([]);
-  const [form, setForm] = useState(false);
+  const [isFormHidden, setIsFormHidden] = useState(false);
+  const [isButtonHidden, setIsButtonHidden] = useState(true);
 
   const createUserActivity = (newUserActivity) => {
     setUsersActivities([...usersActivities, newUserActivity]);
   }
 
+  document.addEventListener('click', () => {
+    setIsFormHidden(false);
+    setIsButtonHidden(true);
+  })
+
   return (
-    <div>
-      <MyButton onClick={() => setForm(true)}> 
-        Add user activity
-      </MyButton>
+    <div
+      style={{
+        margin: '25px auto'
+      }}
+    >
       <UserActivityTable usersActivities={usersActivities}/>
-      <HiddenDiv
-        visible={form}
-        setVisible={setForm}
-      >
-        <UserActivityForm create={createUserActivity}/>
-      </HiddenDiv>
+      { isFormHidden && <UserActivityForm create={createUserActivity}/>}
+      <div>
+        { isButtonHidden &&
+        <MyButton 
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsFormHidden(true);
+            setIsButtonHidden(false);
+          }}
+          style={{
+            margin: '25px 0'
+          }}
+
+        > 
+          Add user activity
+        </MyButton>
+        }
+        { usersActivities && 
+          <MyButton
+            onClick={(e) => e.stopPropagation()}
+          >
+            Save
+          </MyButton>
+        }
+      </div>
+      
     </div>
   )
 }
